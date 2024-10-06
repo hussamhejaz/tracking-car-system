@@ -1,0 +1,118 @@
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Sidebar custom styling */
+.sidebar {
+    transition: width 0.3s ease;
+  }
+  
+  .sidebar-collapsed {
+    width: 64px;
+  }
+  
+  .sidebar-expanded {
+    width: 250px;
+  }
+  
+  /* Transition for cards on hover */
+  .card {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    background-color: #e2e8f0;
+  }
+  
+  /* Adjust main content padding */
+  .main-content {
+    padding-left: 250px;
+    transition: padding-left 0.3s ease;
+  }
+  
+  .main-content.collapsed {
+    padding-left: 64px;
+  }
+  
+  /* Media queries for responsive layout */
+  @media (max-width: 768px) {
+    .main-content {
+      padding-left: 64px;
+    }
+  }
+  /* Main content transition to handle full width when sidebar is closed */
+.main-content {
+    transition: margin-left 0.3s ease-in-out;
+  }
+  
+  /* When the sidebar is closed */
+  .sidebar-collapsed {
+    width: 64px;
+  }
+  
+  /* When the sidebar is expanded */
+  .sidebar-expanded {
+    width: 250px;
+  }
+  /* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sidebar custom styling */
+.sidebar {
+    transition: width 0.3s ease;
+}
+
+.sidebar-collapsed {
+    width: 64px;
+}
+
+.sidebar-expanded {
+    width: 250px;
+}
+
+/* Transition for cards on hover */
+.card {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: #e2e8f0;
+}
+
+/* Adjust main content padding */
+.main-content {
+    padding-left: 250px; /* default padding for expanded sidebar */
+    transition: padding-left 0.3s ease;
+}
+
+.main-content.collapsed {
+    padding-left: 64px; /* padding when sidebar is collapsed */
+}
+
+/* Media queries for responsive layout */
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 64px; /* Maintain padding on smaller screens */
+    }
+}
+
+/* Main content transition to handle full width when sidebar is closed */
+.main-content {
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* When the sidebar is closed */
+.sidebar-collapsed {
+    width: 64px;
+}
+
+/* When the sidebar is expanded */
+.sidebar-expanded {
+    width: 250px;
+}
+
+  
