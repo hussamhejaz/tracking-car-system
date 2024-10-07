@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { FaBell, FaUserCircle, FaTruck, FaCogs, FaAngleDown, FaAngleUp, FaMapMarkerAlt, FaChartLine } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import TimeDisplay from './TimeDisplay'; // Import the TimeDisplay component
 
 // Mock data for the charts
@@ -12,6 +12,16 @@ const chartData = [
   { name: "معاملات", value: 5 },
 ];
 
+// Pie chart data
+const pieData = [
+  { name: "In Transit", value: 15 },
+  { name: "Delivered", value: 10 },
+  { name: "Delayed", value: 3 },
+];
+
+// Pie chart colors
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
+
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -20,11 +30,18 @@ const Dashboard = () => {
     setSearchTerm(event.target.value);
   };
 
-  const notify = () => toast("تم إرسال تنبيه!");
+  const notify = (message) => toast(message);
+
+  useEffect(() => {
+    // Simulate fetching live data (e.g., driver locations, container statuses)
+    // Example: notify('Driver 1 is behind schedule!');
+  }, []);
 
   return (
-    <div className="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold mb-6 text-right">لوحة القيادة</h1>
+    <div className="dashboard bg-white text-gray-900 p-6 rounded-lg shadow-md">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">لوحة القيادة للمصانع</h1>
+      </div>
 
       {/* Time Display */}
       <TimeDisplay />
@@ -40,11 +57,31 @@ const Dashboard = () => {
         />
       </div>
 
-      <button className="p-2 bg-green-500 text-white rounded mb-6" onClick={notify}>
-        إرسال تنبيه
+      {/* Send Notification Button */}
+      <button
+        className="p-2 bg-green-500 text-white rounded mb-6"
+        onClick={() => notify("تنبيه: هناك تأخير في تسليم الحاويات!")}
+      >
+        <FaBell className="inline-block mr-2" /> إرسال تنبيه
       </button>
 
       <ToastContainer />
+
+      {/* Key KPIs Section */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="bg-blue-100 p-6 rounded-lg shadow">
+          <h3 className="text-2xl font-semibold text-right">إجمالي الحاويات المسلّمة اليوم</h3>
+          <p className="text-4xl font-bold text-right mt-4">45</p>
+        </div>
+        <div className="bg-green-100 p-6 rounded-lg shadow">
+          <h3 className="text-2xl font-semibold text-right">متوسط وقت التسليم</h3>
+          <p className="text-4xl font-bold text-right mt-4">3 أيام</p>
+        </div>
+        <div className="bg-yellow-100 p-6 rounded-lg shadow">
+          <h3 className="text-2xl font-semibold text-right">الحاويات في النقل</h3>
+          <p className="text-4xl font-bold text-right mt-4">15</p>
+        </div>
+      </div>
 
       {/* Responsive Grid layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -81,15 +118,27 @@ const Dashboard = () => {
           <p className="text-lg text-right">عدد المعاملات الحالية: 5</p>
         </div>
 
+        {/* Pie Chart for Container Status */}
         <div className="bg-gray-200 p-6 rounded-lg shadow card">
-          <h2 className="text-2xl font-bold mb-4 text-right">إحصائيات بيانية</h2>
+          <h2 className="text-2xl font-bold mb-4 text-right">حالة الحاويات</h2>
           <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={chartData}>
-              <XAxis dataKey="name" reversed />
-              <YAxis />
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                innerRadius={40}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+                label
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
               <Tooltip />
-              <Bar dataKey="value" fill="#8884d8" />
-            </BarChart>
+            </PieChart>
           </ResponsiveContainer>
         </div>
 

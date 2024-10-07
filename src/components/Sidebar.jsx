@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCar, FaBell, FaCog, FaTachometerAlt, FaChartLine, FaBox, FaSignOutAlt, FaUserPlus } from "react-icons/fa"; // Import FaUserPlus for Register
+import { FaCar, FaBell, FaCog, FaTachometerAlt, FaChartLine, FaBox, FaSignOutAlt, FaUserPlus ,  FaFileAlt} from "react-icons/fa"; // Import FaUserPlus for Register
 import { Link } from "react-router-dom";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
@@ -51,7 +51,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </li>
           <li className="flex items-center">
             <Link to="/reports" className="flex items-center text-lg hover:text-gray-400 transition duration-300">
-              <FaChartLine className="text-lg" />
+              <FaFileAlt className="text-lg" />
               {isOpen && <span className="ml-4">التقارير</span>}
             </Link>
           </li>
@@ -70,7 +70,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <li className="flex items-center">
             <Link to="/register" className="flex items-center text-lg hover:text-gray-400 transition duration-300">
               <FaUserPlus className="text-lg" />
-              {isOpen && <span className="ml-4">تسجيل مستخدم جديد</span>}
+              {isOpen && <span className="ml-4">تسجيل سائق جديد</span>}
             </Link>
           </li>
         </ul>
